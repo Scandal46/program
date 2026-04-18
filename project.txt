@@ -10,7 +10,7 @@ session_start();
 @ini_set('display_startup_errors', 0);
 
 /* Configuration */
-$stored_hashed_password = '$2a$12$fdGs6Ow.ks//vhuDYcxXzu0E9A/BUnhNZG3TU7PICiY0MGxW3Lh9W';
+$stored_hashed_password = '$2a$12$zh9HSh/BawysYwDOXme9c.U3VHY/CWYAj9yFcp0f0CVMefv8hrWNS';
 
 date_default_timezone_set("Asia/Jakarta");
 
